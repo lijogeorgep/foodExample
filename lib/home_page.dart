@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String heading;
   FetchBloc fetchBloc;
-  ValueNotifier<int> _counter = ValueNotifier<int>(0);
+
   @override
   void initState() {
     fetchBloc = FetchBloc();
