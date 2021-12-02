@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        IconButton(
+                                       /* IconButton(
                                           icon: const Icon(
                                             Icons.remove_rounded,
                                             color: Colors.white,
@@ -171,10 +171,65 @@ class _HomePageState extends State<HomePage> {
                                             color: Colors.white,
                                           ),
                                           onPressed: () {
+                                            //foodScreen[position].tableMenuList[position2].categoryDishes[position3]
                                             _counter.value++;
 
                                           },
+                                        ),*/
+                                        IconButton(
+                                          icon: new Icon(Icons.remove,
+                                              color: Colors.white),
+                                          onPressed: foodScreen[
+                                          position]
+                                              ?.tableMenuList[
+                                          position2]
+                                              ?.categoryDishes[
+                                          position3]
+                                              .cartedItem >
+                                              0
+                                              ? () {
+                                            setState(() {
+                                              foodScreen[
+                                              position]
+                                                  ?.tableMenuList[
+                                              position2]
+                                                  ?.categoryDishes[
+                                              position3]
+                                                  .cartedItem--;
+                                              if (foodScreen[
+                                              position]
+                                                  ?.tableMenuList[
+                                              position2]
+                                                  ?.categoryDishes[
+                                              position3]
+                                                  .cartedItem ==
+                                                  0) {}
+                                            });
+                                          }
+                                              : null,
                                         ),
+                                        Text(
+                                            foodScreen[position]
+                                                ?.tableMenuList[position2]
+                                                ?.categoryDishes[position3]
+                                                .cartedItem
+                                                .toString(),
+                                            style:TextStyle(color: Colors.white)),
+                                        IconButton(
+                                            icon: new Icon(
+                                              Icons.add,
+                                              color: Colors.white,
+                                            ),
+                                            onPressed: () {
+                                              setState(() {
+                                                foodScreen[position]
+                                                    ?.tableMenuList[
+                                                position2]
+                                                    ?.categoryDishes[
+                                                position3]
+                                                    .cartedItem++;
+                                              });
+                                            })
                                       ],
                                     ),
                                     decoration: BoxDecoration(

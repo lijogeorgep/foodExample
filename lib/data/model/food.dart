@@ -4,20 +4,22 @@
 
 import 'dart:convert';
 
-List<Food> foodFromJson(String str) => List<Food>.from(json.decode(str).map((x) => Food.fromJson(x)));
+List<Food> foodFromJson(String str) =>
+    List<Food>.from(json.decode(str).map((x) => Food.fromJson(x)));
 
-String foodToJson(List<Food> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String foodToJson(List<Food> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Food {
   Food({
-     this.restaurantId,
-  this.restaurantName,
+    this.restaurantId,
+    this.restaurantName,
     this.restaurantImage,
-   this.tableId,
-  this.tableName,
- this.branchName,
-   this.nexturl,
-  this.tableMenuList,
+    this.tableId,
+    this.tableName,
+    this.branchName,
+    this.nexturl,
+    this.tableMenuList,
   });
 
   String restaurantId;
@@ -30,35 +32,37 @@ class Food {
   List<TableMenuList> tableMenuList;
 
   factory Food.fromJson(Map<String, dynamic> json) => Food(
-    restaurantId: json["restaurant_id"],
-    restaurantName: json["restaurant_name"],
-    restaurantImage: json["restaurant_image"],
-    tableId: json["table_id"],
-    tableName: json["table_name"],
-    branchName: json["branch_name"],
-    nexturl: json["nexturl"],
-    tableMenuList: List<TableMenuList>.from(json["table_menu_list"].map((x) => TableMenuList.fromJson(x))),
-  );
+        restaurantId: json["restaurant_id"],
+        restaurantName: json["restaurant_name"],
+        restaurantImage: json["restaurant_image"],
+        tableId: json["table_id"],
+        tableName: json["table_name"],
+        branchName: json["branch_name"],
+        nexturl: json["nexturl"],
+        tableMenuList: List<TableMenuList>.from(
+            json["table_menu_list"].map((x) => TableMenuList.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "restaurant_id": restaurantId,
-    "restaurant_name": restaurantName,
-    "restaurant_image": restaurantImage,
-    "table_id": tableId,
-    "table_name": tableName,
-    "branch_name": branchName,
-    "nexturl": nexturl,
-    "table_menu_list": List<dynamic>.from(tableMenuList.map((x) => x.toJson())),
-  };
+        "restaurant_id": restaurantId,
+        "restaurant_name": restaurantName,
+        "restaurant_image": restaurantImage,
+        "table_id": tableId,
+        "table_name": tableName,
+        "branch_name": branchName,
+        "nexturl": nexturl,
+        "table_menu_list":
+            List<dynamic>.from(tableMenuList.map((x) => x.toJson())),
+      };
 }
 
 class TableMenuList {
   TableMenuList({
-this.menuCategory,
- this.menuCategoryId,
-this.menuCategoryImage,
-this.nexturl,
- this.categoryDishes,
+    this.menuCategory,
+    this.menuCategoryId,
+    this.menuCategoryImage,
+    this.nexturl,
+    this.categoryDishes,
   });
 
   String menuCategory;
@@ -68,29 +72,31 @@ this.nexturl,
   List<CategoryDish> categoryDishes;
 
   factory TableMenuList.fromJson(Map<String, dynamic> json) => TableMenuList(
-    menuCategory: json["menu_category"],
-    menuCategoryId: json["menu_category_id"],
-    menuCategoryImage: json["menu_category_image"],
-    nexturl: json["nexturl"],
-    categoryDishes: List<CategoryDish>.from(json["category_dishes"].map((x) => CategoryDish.fromJson(x))),
-  );
+        menuCategory: json["menu_category"],
+        menuCategoryId: json["menu_category_id"],
+        menuCategoryImage: json["menu_category_image"],
+        nexturl: json["nexturl"],
+        categoryDishes: List<CategoryDish>.from(
+            json["category_dishes"].map((x) => CategoryDish.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "menu_category": menuCategory,
-    "menu_category_id": menuCategoryId,
-    "menu_category_image": menuCategoryImage,
-    "nexturl": nexturl,
-    "category_dishes": List<dynamic>.from(categoryDishes.map((x) => x.toJson())),
-  };
+        "menu_category": menuCategory,
+        "menu_category_id": menuCategoryId,
+        "menu_category_image": menuCategoryImage,
+        "nexturl": nexturl,
+        "category_dishes":
+            List<dynamic>.from(categoryDishes.map((x) => x.toJson())),
+      };
 }
 
 class AddonCat {
   AddonCat({
- this.addonCategory,
-  this.addonCategoryId,
- this.addonSelection,
- this.nexturl,
-this.addons,
+    this.addonCategory,
+    this.addonCategoryId,
+    this.addonSelection,
+    this.nexturl,
+    this.addons,
   });
 
   String addonCategory;
@@ -100,35 +106,37 @@ this.addons,
   List<CategoryDish> addons;
 
   factory AddonCat.fromJson(Map<String, dynamic> json) => AddonCat(
-    addonCategory: json["addon_category"],
-    addonCategoryId: json["addon_category_id"],
-    addonSelection: json["addon_selection"],
-    nexturl: json["nexturl"],
-    addons: List<CategoryDish>.from(json["addons"].map((x) => CategoryDish.fromJson(x))),
-  );
+        addonCategory: json["addon_category"],
+        addonCategoryId: json["addon_category_id"],
+        addonSelection: json["addon_selection"],
+        nexturl: json["nexturl"],
+        addons: List<CategoryDish>.from(
+            json["addons"].map((x) => CategoryDish.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "addon_category": addonCategory,
-    "addon_category_id": addonCategoryId,
-    "addon_selection": addonSelection,
-    "nexturl": nexturl,
-    "addons": List<dynamic>.from(addons.map((x) => x.toJson())),
-  };
+        "addon_category": addonCategory,
+        "addon_category_id": addonCategoryId,
+        "addon_selection": addonSelection,
+        "nexturl": nexturl,
+        "addons": List<dynamic>.from(addons.map((x) => x.toJson())),
+      };
 }
 
 class CategoryDish {
   CategoryDish({
-this.dishId,
-this.dishName,
-this.dishPrice,
- this.dishImage,
- this.dishCurrency,
- this.dishCalories,
- this.dishDescription,
-this.dishAvailability,
- this.dishType,
-this.nexturl,
- this.addonCat,
+    this.dishId,
+    this.dishName,
+    this.dishPrice,
+    this.dishImage,
+    this.dishCurrency,
+    this.dishCalories,
+    this.dishDescription,
+    this.dishAvailability,
+    this.dishType,
+    this.cartedItem = 0,
+    this.nexturl,
+    this.addonCat,
   });
 
   String dishId;
@@ -140,43 +148,47 @@ this.nexturl,
   String dishDescription;
   bool dishAvailability;
   int dishType;
+  int cartedItem;
   String nexturl;
   List<AddonCat> addonCat;
 
   factory CategoryDish.fromJson(Map<String, dynamic> json) => CategoryDish(
-    dishId: json["dish_id"],
-    dishName: json["dish_name"],
-    dishPrice: json["dish_price"].toDouble(),
-    dishImage: json["dish_image"],
-    dishCurrency: dishCurrencyValues.map[json["dish_currency"]],
-    dishCalories: json["dish_calories"],
-    dishDescription: json["dish_description"],
-    dishAvailability: json["dish_Availability"],
-    dishType: json["dish_Type"],
-    nexturl: json["nexturl"] == null ? null : json["nexturl"],
-    addonCat: json["addonCat"] == null ? null : List<AddonCat>.from(json["addonCat"].map((x) => AddonCat.fromJson(x))),
-  );
+        dishId: json["dish_id"],
+        dishName: json["dish_name"],
+        dishPrice: json["dish_price"].toDouble(),
+        dishImage: json["dish_image"],
+        dishCurrency: dishCurrencyValues.map[json["dish_currency"]],
+        dishCalories: json["dish_calories"],
+        dishDescription: json["dish_description"],
+        dishAvailability: json["dish_Availability"],
+        dishType: json["dish_Type"],
+        nexturl: json["nexturl"] == null ? null : json["nexturl"],
+        addonCat: json["addonCat"] == null
+            ? null
+            : List<AddonCat>.from(
+                json["addonCat"].map((x) => AddonCat.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "dish_id": dishId,
-    "dish_name": dishName,
-    "dish_price": dishPrice,
-    "dish_image": dishImage,
-    "dish_currency": dishCurrencyValues.reverse[dishCurrency],
-    "dish_calories": dishCalories,
-    "dish_description": dishDescription,
-    "dish_Availability": dishAvailability,
-    "dish_Type": dishType,
-    "nexturl": nexturl == null ? null : nexturl,
-    "addonCat": addonCat == null ? null : List<dynamic>.from(addonCat.map((x) => x.toJson())),
-  };
+        "dish_id": dishId,
+        "dish_name": dishName,
+        "dish_price": dishPrice,
+        "dish_image": dishImage,
+        "dish_currency": dishCurrencyValues.reverse[dishCurrency],
+        "dish_calories": dishCalories,
+        "dish_description": dishDescription,
+        "dish_Availability": dishAvailability,
+        "dish_Type": dishType,
+        "nexturl": nexturl == null ? null : nexturl,
+        "addonCat": addonCat == null
+            ? null
+            : List<dynamic>.from(addonCat.map((x) => x.toJson())),
+      };
 }
 
 enum DishCurrency { SAR }
 
-final dishCurrencyValues = EnumValues({
-  "SAR": DishCurrency.SAR
-});
+final dishCurrencyValues = EnumValues({"SAR": DishCurrency.SAR});
 
 class EnumValues<T> {
   Map<String, T> map;
