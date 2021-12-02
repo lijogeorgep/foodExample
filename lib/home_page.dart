@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String heading;
   FetchBloc fetchBloc;
+  ValueNotifier<int> _counter = ValueNotifier<int>(0);
   @override
   void initState() {
     fetchBloc = FetchBloc();
@@ -42,6 +43,14 @@ class _HomePageState extends State<HomePage> {
                   }),
             ],
           ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        child: Icon(Icons.shopping_cart_rounded,
+
         ),
       ),
     );
@@ -79,7 +88,11 @@ class _HomePageState extends State<HomePage> {
             borderRadius: BorderRadius.all(Radius.circular(8))),
         child: Column(
           children: <Widget>[
-            Text(foodScreen[position].restaurantName,style: TextStyle(fontSize: 28,color: Colors.green,letterSpacing: 3.0),),
+            Container(
+                padding: EdgeInsets.all(8.0),
+                width: MediaQuery.of(context).size.width,
+                color: Colors.black,
+                child: Center(child: Text(foodScreen[position].restaurantName,style: TextStyle(fontSize: 28,color: Colors.white,letterSpacing: 3.0),))),
            SizedBox(height: 20,),
             ListView.builder(
                 physics: const ScrollPhysics(),
@@ -113,6 +126,62 @@ class _HomePageState extends State<HomePage> {
                                     Text('\$ '+foodScreen[position].tableMenuList[position2].categoryDishes[position3].dishPrice.toString()),
                                   ],
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                ),
+                                SizedBox(height: 10,),
+                                Align(
+                                    alignment:Alignment.topLeft,
+                                    child: foodScreen[position].tableMenuList[position2].categoryDishes[position3].dishAvailability? Text('available',style: TextStyle(color: Colors.green),):Text('finished',style: TextStyle(color: Colors.redAccent))),
+
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child:foodScreen[position].tableMenuList[position2].categoryDishes[position3].dishAvailability?
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 12, bottom: 12),
+                                    width: 120,
+                                    height: 40,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        IconButton(
+                                          icon: const Icon(
+                                            Icons.remove_rounded,
+                                            color: Colors.white,
+                                          ),
+                                          onPressed: () {
+
+                                            if (_counter.value <= 0) {
+                                              print("nop");
+                                            } else {
+                                              _counter.value--;
+                                            }
+                                          },
+                                        ),
+                                        ValueListenableBuilder(
+                                          valueListenable: _counter,
+                                          builder: (context, value, child) {
+                                            return Text(
+                                              '$value',
+                                              style: const TextStyle(color: Colors.white),
+                                            );
+                                          },
+                                        ),
+                                        IconButton(
+                                          icon: const Icon(
+                                            Icons.add,
+                                            color: Colors.white,
+                                          ),
+                                          onPressed: () {
+                                            _counter.value++;
+
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                  ):Container(),
                                 ),
                                 Divider(),
                               ],
